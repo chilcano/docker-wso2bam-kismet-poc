@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eventFormatter name="rpi_kismet_formatter_totalpackets"
+  statistics="disable" trace="disable" xmlns="http://wso2.org/carbon/eventformatter">
+  <from streamName="rpi_kismet_stream_out_totalpackets" version="1.0.0"/>
+  <mapping customMapping="enable" type="text">
+    <inline>{{total_packets}}</inline>
+  </mapping>
+  <to eventAdaptorName="HTTPOutputAdaptor" eventAdaptorType="http">
+    <property name="http.username">admin</property>
+    <property name="http.password">admin</property>
+    <property name="http.url">https://localhost:9443/message_store?type=RT_KISMET_TOTALPACKETS</property>
+  </to>
+</eventFormatter>

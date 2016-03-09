@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eventFormatter name="rpi_kismet_formatter_fulllist"
+  statistics="disable" trace="disable" xmlns="http://wso2.org/carbon/eventformatter">
+  <from streamName="rpi_kismet_stream_out_fulllist" version="1.0.0"/>
+  <mapping customMapping="enable" type="json">
+    <inline>{ 
+   "meta_bssid" : "{{meta_bssid}}",
+   "type" : "{{type}}",
+   "channel" : "{{channel}}",
+   "llcpackets" : "{{llcpackets}}",
+   "datapackets" : "{{datapackets}}",
+   "macAddress" : "{{macAddress}}",
+   "signal_dbm" : "{{signal_dbm}}"
+}</inline>
+  </mapping>
+  <to eventAdaptorName="HTTPOutputAdaptor" eventAdaptorType="http">
+    <property name="http.username">admin</property>
+    <property name="http.password">admin</property>
+    <property name="http.url">https://localhost:9443/message_store?type=RT_KISMET_FULLLIST</property>
+  </to>
+</eventFormatter>

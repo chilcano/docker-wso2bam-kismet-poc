@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<executionPlan name="rpi_kismet_plan" statistics="disable"
+  trace="disable" xmlns="http://wso2.org/carbon/eventprocessor">
+  <description>Kismet WIFI traffic capture Exec Plan</description>
+  <siddhiConfiguration>
+    <property name="siddhi.persistence.snapshot.time.interval.minutes">0</property>
+    <property name="siddhi.enable.distributed.processing">false</property>
+  </siddhiConfiguration>
+  <importedStreams>
+    <stream as="rpi_kismet_stream_in" name="rpi_kismet_stream_in" version="1.0.0"/>
+  </importedStreams>
+  <queryExpressions><![CDATA[from rpi_kismet_stream_in#window.time(10 sec) 
+select meta_bssid, type, channel, llcpackets, datapackets, macAddress, signal_dbm 
+group by meta_bssid, type, channel
+insert into rpi_kismet_stream_out_fulllist;
+from rpi_kismet_stream_in#window.time(10 sec) 
+select sum(convert(newpackets,long)) as total_packets 
+insert into rpi_kismet_stream_out_totalpackets;]]></queryExpressions>
+  <exportedStreams>
+    <stream name="rpi_kismet_stream_out_fulllist"
+      valueOf="rpi_kismet_stream_out_fulllist" version="1.0.0"/>
+    <stream name="rpi_kismet_stream_out_totalpackets"
+      valueOf="rpi_kismet_stream_out_totalpackets" version="1.0.0"/>
+  </exportedStreams>
+</executionPlan>
