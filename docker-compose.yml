@@ -1,0 +1,19 @@
+# Docker Compose file to create a WSO2 BAM container for WIFI Traffic capture PoC
+
+# cd ~/1github-repo/docker-wso2-dev-srv/wso2bam/2.5.0-kismet-poc
+
+
+
+
+wso2bam-dashboard-kismet:
+  build: .
+  ports:
+    - "9445:9443/tcp"
+    - "7713:7711/tcp"
+  links:
+    - mac-manuf
+
+mac-manuf:
+  image: chilcano/mac-manuf-lookup:py-latest
+  ports:
+    - "5443:5443/tcp"
