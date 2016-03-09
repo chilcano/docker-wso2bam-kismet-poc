@@ -1,9 +1,12 @@
 # Docker Compose file to create a WSO2 BAM container for WIFI Traffic capture PoC
-
-# cd ~/1github-repo/docker-wso2-dev-srv/wso2bam/2.5.0-kismet-poc
-
-
-
+#
+# Steps:
+#
+# $ git clone https://github.com/chilcano/docker-wso2bam-kismet-poc.git
+# $ cd docker-wso2bam-kismet-poc
+# $ git clone https://github.com/chilcano/wso2bam-wifi-thrift-cassandra-poc.git
+# $ docker-compose up -d
+#
 
 wso2bam-dashboard-kismet:
   build: .
