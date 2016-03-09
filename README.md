@@ -13,7 +13,7 @@ $ cd docker-wso2bam-kismet-poc
 $ git clone https://github.com/chilcano/wso2bam-wifi-thrift-cassandra-poc.git
 ```
 
-__2) Run docker-compose.yaml__
+__2) Run docker-compose.yml__
 
 ```bash
 $ docker-compose up -d
@@ -54,9 +54,7 @@ mac-manuf_1                | 192.168.99.1 - - [08/Mar/2016 17:03:46] "GET /chilc
 ...
 ```
 
-Where:
-
-- `wso2bam-dashboard-kismet_1` and `mac-manuf_1` are the recently created docker containers.
+Where the `wso2bam-dashboard-kismet_1` and `mac-manuf_1` are the recently created docker containers.
 
 
 __5) Stopping or killing the recently created containers__
@@ -72,17 +70,23 @@ $ docker-compose kill
 ```
 
 
-## Running the PoC (Kismet - WSO2 BAM - MAC Manuf Lookup)__
+## Running the PoC (Kismet -> WSO2 BAM -> MAC Manuf Lookup)
 
 __1) Send 802.11 captured traffic to WSO2 BAM__
 
-From the Host, forward the `7713` port and expose the Docker host to your local network. Using this, the Raspberry Pi (Kimset) can reach to Docker host.
+From the Host forwards the `7713` port and exposes the Docker machine IP to your local network. Using this, the Raspberry Pi (Kismet) can reach to the Docker machine.
 ```bash
 // (user/pwd: docker/tcuser)
 $ ssh docker@$(docker-machine ip default) -f -N -L 192.168.1.43:7713:localhost:7713
 ```
 
-Follow this instruccions:
+Where:
+
+- `f` is to run in background.
+- `N` is to don't execute a remote command. This is useful for just forwarding ports.
+- `L 192.168.1.43:7713:localhost:7713` this specifies that the given port on the local (client) host is to be forwarded to the given host and port on the remote side.
+
+For a further explanation, follow this instruccions:
 https://holisticsecurity.wordpress.com/2016/02/02/everything-generates-data-capturing-wifi-anonymous-traffic-raspberrypi-wso2-part-i
 
 __2) Run the docker-componse.yml (WSO2 BAM & MAC Manuf Lookup)__
@@ -101,4 +105,7 @@ The IP address `192.168.99.100` is the IP of your Docker Machine where are runni
 
 1. Docker Compose: https://docs.docker.com/compose/overview
 2. A Python Microservice in a Docker Container (MAC Address MAnufacturer Lookup): http://wp.me/p8pPj-qG 
-3. Analyzing Wireless traffic in real time with WSO2 BAM, Apache Cassandra, Complex Event Processor (CEP Siddhi), Apache Thrift and Python: Part I (http://ow.ly/YcEf1), part II (http://ow.ly/YcEgz) and part III (http://ow.ly/YcEij)
+3. Analyzing Wireless traffic in real time with WSO2 BAM, Apache Cassandra, Complex Event Processor (CEP Siddhi), Apache Thrift and Python: 
+  * Part I (http://ow.ly/YcEf1)
+  * Part II (http://ow.ly/YcEgz) and 
+  * Part III (http://ow.ly/YcEij)
