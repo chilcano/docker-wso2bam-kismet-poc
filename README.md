@@ -106,6 +106,6 @@ The IP address `192.168.99.100` is the IP of your Docker Machine where are runni
 1. Docker Compose: https://docs.docker.com/compose/overview
 2. A Python Microservice in a Docker Container (MAC Address MAnufacturer Lookup): http://wp.me/p8pPj-qG 
 3. Analyzing Wireless traffic in real time with WSO2 BAM, Apache Cassandra, Complex Event Processor (CEP Siddhi), Apache Thrift and Python: 
-  * Part I (http://ow.ly/YcEf1)
-  * Part II (http://ow.ly/YcEgz) and 
-  * Part III (http://ow.ly/YcEij)
+  * Part I (http://wp.me/p8pPj-pE)
+  * Part II (http://wp.me/p8pPj-pW)
+  * Part III (http://wp.me/p8pPj-qe)
